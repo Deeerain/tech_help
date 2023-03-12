@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include '_header.html' %}
+
+<div class="container">
+    <div class="block">
+        <h3 class="heading">Аккаунт пользователя: {{ request.user.username }}</h3>
+
+        <form class="smart-form" action="" method="post">
+            {% csrf_token %}
+
+            <input class="smart-input" type="text" name="first_name" id="" placeholder="Имя" value="{{ user.first_name }}">
+            <input class="smart-input" type="text" name="last_name" id="" placeholder="Фамилия" value="{{ user.last_name }}">
+
+            <input type="submit" value="Сохранить">
+
+        </form>
+
+        <script type="module">
+            import smart_input from './static/js/smart_input.js';
+
+            smart_input.init();
+
+        </script>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+<nav>
+    <ul class="nav_list">
+        <li class="nav_item"><a href="{% url 'home' %}">Главная</a></li>
+        <li class="nav_item"><a href="{% url 'works' %}">Работы</a></li>
+
+        {% if user.is_staff %}
+        <li class="nav_item"><a href="{% url 'reports' %}">Отчеты</a></li>
+        <li class="nav_item"><a href="/admin/">Админ панель</a></li>
+        {% endif %}
+    </ul>
+</nav>

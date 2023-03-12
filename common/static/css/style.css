@@ -1,0 +1,104 @@
+@import url('./input.css');
+@import url('./tables.css');
+
+:root{
+    --bg-header: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+header{
+    display: flex;
+    flex-wrap: wrap;
+    height: 60px;
+    background-color: var(--bg-header);
+    color: white;
+    padding: 5px;
+    align-items: center;
+}
+
+.container{
+    margin: 0 auto;
+    padding: 5px;
+}
+.container > * {
+    margin-bottom: 10px;
+}
+
+.container:last-child {
+    margin-bottom: none;
+}
+
+.block{
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 6px 0px #00000080;
+}
+
+.nav_list{
+    list-style: none;
+    display: flex;
+}
+
+.nav_item{
+    text-transform: uppercase;
+    margin: 3px;
+
+}
+.nav_item > a{
+    text-decoration: none;
+    color: white;
+}
+
+.auth_container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth_container > form{
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+    border-bottom: 2px solid black;
+    margin-bottom: 15px;
+}
+
+.block[id='WorkList'] {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .container {
+        width: 980px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .container {
+        width: 900px;
+    }
+}
