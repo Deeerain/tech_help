@@ -1,0 +1,14 @@
+{% extends 'registration/base.html' %}
+
+{% block auth_container %}
+<h1>Авторизация</h1>
+
+<form class="block" method="post">
+    {% csrf_token %}
+
+    {{form}}
+
+    <input type="submit" value="Войти">
+
+</form>
+{% endblock %}

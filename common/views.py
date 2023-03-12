@@ -6,7 +6,7 @@ from . import forms
 
 
 class HomeView(auth_mixins.LoginRequiredMixin, generic.TemplateView):
-    template_name = 'home.html'
+    template_name = 'common/home.html'
 
 
 class WorkView(generic.View, auth_mixins.LoginRequiredMixin):
@@ -23,7 +23,7 @@ class WorkView(generic.View, auth_mixins.LoginRequiredMixin):
     def get(self, request):
         self.compare_context(request)
 
-        return render(request, 'works.html', self.context)
+        return render(request, 'common/works.html', self.context)
 
     def compare_context(self, request, **kwargs):
         self.context['worklist'] = self.get_model(
@@ -48,4 +48,11 @@ class WorkView(generic.View, auth_mixins.LoginRequiredMixin):
 class ReportsView(generic.View, auth_mixins.LoginRequiredMixin):
 
     def get(self, request):
-        return render(request, template_name='reports.html')
+        return render(request, template_name='common/reports.html')
+
+
+def remove_work(request, pk):
+    work = models.Work.objects.get(pk=pk, user=request.user)
+    work.delete()
+
+    return redirect('works')
