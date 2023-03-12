@@ -1,0 +1,8 @@
+{% extends 'registration/base.html' %}
+
+{% block auth_container %}
+<h1>Вы вышли из системы</h1>
+
+
+<p>Вы не авторизованы. <a href="{% url 'auth' %}">Войти?</a></p>
+{% endblock %}

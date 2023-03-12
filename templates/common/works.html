@@ -1,7 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'common/base.html' %}
 
 {% block content %}
-{% include '_header.html' %}
+{% include 'common/_header.html' %}
 
 <div class="container">
     <div class="block work_list">
@@ -17,19 +17,27 @@
     <div class="block" id="WorkList">
         <h3 class="heading">Лист работ</h3>
 
+        {% if worklist %}
         <table width="100%">
             <caption>Список работ</caption>
             <tr>
                 <th>Вид работы</th>
                 <th>Кол-во</th>
+                <th>Дата создания</th>
+                <th></th>
             </tr>
             {% for work in worklist %}
             <tr id="{{ work.pk }}">
-                <td>{{ work.work_type.title }}</td>
+                <td>{{ work.get_work_type_display }}</td>
                 <td>{{ work.count }}</td>
+                <td>{{ work.created_at|date }}</td>
+                <td><a href="{% url 'works_delete' pk=work.pk %}">Удалить</a></td>
             </tr>
             {% endfor %}
         </table>
+        {% else %}
+        <p>Список работ пуст.</p>
+        {% endif %}
     </div>
 </div>
 
