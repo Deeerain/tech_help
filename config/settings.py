@@ -9,7 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = environ.get('DJANGO_SECRET_KEY', 'django-insecure-y*n@(!w-#*%05&ad5w$m8znus(k8nw=k02m_&2954+a9(640rb')
+SECRET_KEY = environ.get(
+    'DJANGO_SECRET_KEY', 'django-insecure-y*n@(!w-#*%05&ad5w$m8znus(k8nw=k02m_&2954+a9(640rb')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(environ.get('DJANGO_DEBUG', 'True'))
@@ -68,8 +69,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': environ.get('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': environ.get('DB_DATABASE', BASE_DIR / 'db.sqlite3'),
+        'USER': environ.get('DB_USER', 'django'),
+        'PASSWORD': environ.get('DB_PASSWORD', 'django'),
+        'HOST': environ.get('DB_HOST', 'localhost'),
+        'PORT': environ.get('DB_PORT', '5432'),
     }
 }
 

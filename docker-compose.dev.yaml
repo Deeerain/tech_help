@@ -1,0 +1,41 @@
+version: '3.1'
+
+services:
+  web:
+    container_name: django_application
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.dev.env
+    depends_on:
+      - database
+
+  database:
+    container_name: database_for_application
+    image: postgres:alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=application_dev
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=django
+    volumes:
+      - database_data:/var/lib/postgresql/data/
+
+  nginx:
+    container_name: proxy_server_for_application
+    build: ./nginx
+    volumes:
+      - static_volume:/app/static/
+    ports:
+      - 80:80
+    depends_on:
+      - web
+  
+
+volumes:
+  database_data:
+  static_volume:
